@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cat_ui"
-version = "1.0.4"
+version = "1.0.5"
 authors = [{ name="Akio Smiowly", email="lazzycatto@yandex.com" }]
 description = "Simple python ui lib for cli programs"
 readme = "README.md"
@@ -22,3 +22,8 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/LazzyCatto/cat_ui"
 Issues = "https://github.com/LazzyCatto/cat_ui/issues"
+
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cat_ui*"]

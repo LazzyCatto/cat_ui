@@ -2,13 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name="cat_ui",
-    version="1.0.3",
+    version="1.0.5",
     description="Simple python ui lib for cli programs",
     author="Akio Smiowly",
     author_email="lazzycatto@yandex.com",
     license="MIT",
-    packages=find_packages(where="cat_ui"),
-    package_dir={"": "cat_ui"},
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[
         "regex>=2024.11.6",
