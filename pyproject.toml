@@ -22,7 +22,3 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/LazzyCatto/cat_ui"
 Issues = "https://github.com/LazzyCatto/cat_ui/issues"
-
-
-[tool.setuptools.packages.find]
-where = ["cat_ui"]
