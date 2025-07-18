@@ -33,6 +33,7 @@ __all__ = [
     "VerticalContainer",
     "HorizontalContainer",
     "Button",
+    "ButtonText",
     "SelectorLabel",
     "VerticalCheckbox",
     "HorizontalCheckbox",

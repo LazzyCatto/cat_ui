@@ -1,4 +1,4 @@
-from cat_ui import VerticalContainer, HorizontalList, BoxContainer, Button, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, App
+from cat_ui import VerticalContainer, HorizontalList, BoxContainer, Button, ButtonText, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, App
 import asyncio
 
 app = App()
@@ -50,7 +50,7 @@ def check_password(password: PasswordInput):
 password_input.add_action(check_password)
 
 footer = BoxContainer(min_width=windows[0].get_width(), min_height=1, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_CENTER, **styles.invisible)
-next_page = Button("next", min_height=1, style=styles.invisible, selected_style=styles.invisible, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_RIGHT)
+next_page = ButtonText("next", alignment=Alignment.BOTTOM_RIGHT)
 next_page.add_action(go_forward)
 footer.append(next_page)
 windows[0].append(footer)
@@ -75,10 +75,10 @@ game_radio.add_action(on_change)
 windows[1].append(label)
 
 footer = BoxContainer(min_width=windows[0].get_width(), min_height=1, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_CENTER, **styles.invisible)
-prev_page = Button("back", min_height=1, style=styles.invisible, selected_style=styles.invisible, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_LEFT)
+prev_page = ButtonText("back", alignment=Alignment.BOTTOM_LEFT)
 prev_page.add_action(go_back)
 footer.append(prev_page)
-next_page = Button("next", min_height=1, style=styles.invisible, selected_style=styles.invisible, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_RIGHT)
+next_page = ButtonText("next", alignment=Alignment.BOTTOM_RIGHT)
 next_page.add_action(go_forward)
 footer.append(next_page)
 windows[1].append(footer)
@@ -89,7 +89,7 @@ windows[2].append(Label("THANK YOU FOR USING CAT_UI", alignment=Alignment.TOP_CE
 windows[2].append(Label("to leave use (Ctrl+C).", alignment=Alignment.TOP_CENTER))
 
 footer = BoxContainer(min_width=windows[0].get_width(), min_height=1, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_CENTER, **styles.invisible)
-prev_page = Button("back", min_height=1, style=styles.invisible, selected_style=styles.invisible, left_padding=0, right_padding=0, top_padding=0, bottom_padding=0, alignment=Alignment.BOTTOM_LEFT)
+prev_page = ButtonText("back", alignment=Alignment.BOTTOM_LEFT)
 prev_page.add_action(go_back)
 footer.append(prev_page)
 windows[2].append(footer)

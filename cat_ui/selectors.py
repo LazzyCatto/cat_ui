@@ -46,6 +46,47 @@ class Button(BoxContainer):
         return True
 
 
+class ButtonText(Label):
+    def __init__(self, text, width=-1, alignment=Alignment.TOP_LEFT):
+        super().__init__(text, width, alignment)
+        self.actions = []
+        self.plain_text = text
+        self.selected = False
+    
+    def process_key(self, raw_key):
+        if raw_key in "\n\r":
+            self.on_click()
+        return raw_key
+    
+    def set_text(self, text):
+        self.plain_text = text
+        self.update_text()
+    
+    def get_text(self):
+        return self.plain_text
+
+    def select(self):
+        self.selected = True
+        self.update_text()
+    
+    def deselect(self):
+        self.selected = False
+        self.update_text()
+    
+    def update_text(self):
+        super().set_text(f"\033[1m{self.plain_text}\033[0;0m" if self.selected else self.plain_text)
+    
+    def add_action(self, on_click):
+        self.actions.append(on_click)
+
+    def on_click(self):
+        for action in self.actions:
+            action(self)
+    
+    def selectable(self):
+        return True
+
+
 class SelectorLabel(Label):
     def __init__(self, text, chosen_prefix="*", plain_prefix=" ", width=-1, alignment=Alignment.TOP_LEFT):
         super().__init__(plain_prefix + text, width, alignment)
@@ -59,14 +100,19 @@ class SelectorLabel(Label):
 
     def set_text(self, text: str, width = -1):
         self.plain_text = text
-        self.width = len(self) if width == -1 else width
-        self.height = (len(self) + width - 1) // width
+        self.update_text()
     
     def select(self):
         self.selected = True
+        self.update_text()
     
     def deselect(self):
         self.selected = False
+        self.update_text()
+    
+    def update_text(self):
+        text_with_prefix = (self.chosen_prefix if self.chosen else self.plain_prefix) + self.plain_text
+        super().set_text(f"\033[1m{text_with_prefix}\033[0;0m" if self.selected else text_with_prefix)
     
     def add_action_on(self, on_click):
         self.actions_on.append(on_click)
@@ -76,19 +122,14 @@ class SelectorLabel(Label):
     
     def chose(self, state: bool):
         self.chosen = state
-        self.text = (self.chosen_prefix if state else self.plain_prefix) + self.plain_text
-        self.height = (len(self) + self.width - 1) // self.width
         for action in self.actions_on if state else self.actions_off:
             action(self)
+        self.update_text()
     
     def process_key(self, raw_key):
         if raw_key in '\n\r':
             self.chose(not self.chosen)
         return raw_key
-    
-    def draw(self):
-        text = f"\033[1B\033[{self.width}D".join(self.get_splited())
-        return f"\033[s\033[1m{text}\033[0;0m\033[u" if self.selected else f"\033[s{text}\033[u"
     
     def selectable(self):
         return True
