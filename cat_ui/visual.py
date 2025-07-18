@@ -1,5 +1,5 @@
-from ui.containers import ContainerElement, Alignment
-from ui.keyboard_manager import visible_length, split_visible_chars
+from cat_ui.containers import ContainerElement, Alignment
+from cat_ui.keyboard_manager import visible_length, split_visible_chars
 
 
 class Label(ContainerElement):

@@ -1,4 +1,4 @@
-from ui.keyboard_manager import move_left, move_right, move_up, move_down, get_key_from_raw, get_raw_from_key, Key, KeyType
+from cat_ui.keyboard_manager import move_left, move_right, move_up, move_down, get_key_from_raw, get_raw_from_key, Key, KeyType
 from enum import Enum
 
 

@@ -1,6 +1,6 @@
-from ui.containers import Alignment
-from ui.visual import Label
-from ui.keyboard_manager import get_key_from_raw, get_raw_from_key, Key, KeyType, printable
+from cat_ui.containers import Alignment
+from cat_ui.visual import Label
+from cat_ui.keyboard_manager import get_key_from_raw, get_raw_from_key, Key, KeyType, printable
 
 
 class InputField(Label):

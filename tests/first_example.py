@@ -1,4 +1,4 @@
-from ui import VerticalContainer, Label, Button, Alignment, run, set_screen
+from cat_ui import VerticalContainer, Label, Button, Alignment, run, set_screen
 import asyncio
 
 window = VerticalContainer(min_width=10, left_padding=2,right_padding=2, alignment=Alignment.TOP_CENTER)

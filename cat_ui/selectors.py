@@ -1,6 +1,6 @@
-from ui.containers import BoxContainer, VerticalList, HorizontalList, Alignment
-from ui.visual import Label
-from ui.styles import normal, bold_normal
+from cat_ui.containers import BoxContainer, VerticalList, HorizontalList, Alignment
+from cat_ui.visual import Label
+from cat_ui.styles import normal, bold_normal
 
 
 class Button(BoxContainer):

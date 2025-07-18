@@ -1,9 +1,9 @@
-from ui.containers import *
-from ui.keyboard_manager import *
-from ui.input_containers import *
-from ui.visual import *
-from ui.selectors import *
-import ui.styles as styles
+from cat_ui.containers import *
+from cat_ui.keyboard_manager import *
+from cat_ui.input_containers import *
+from cat_ui.visual import *
+from cat_ui.selectors import *
+import cat_ui.styles as styles
 
 
 SCREEN_WIDTH = 100

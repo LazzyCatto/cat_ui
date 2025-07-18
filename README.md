@@ -1,4 +1,4 @@
-# CAT UI
+# CAT cat_ui
 
 [![GitHub](https://img.shields.io/badge/source-GitHub-blue)](https://github.com/LazzyCatto/cat_ui)
 [![PyPI](https://img.shields.io/badge/install%20via-pip-ff69b4)](https://pypi.org/project/cat-ui/)
@@ -29,7 +29,7 @@ pip install .
 Чтобы быстро попробовать `cat_ui`, создайте файл `main.py` со следующим содержимым:
 
 ```python
-from ui import Label, run, set_screen
+from cat_ui import Label, run, set_screen
 import asyncio
 
 set_screen(Label("Hello cat_ui!"))
@@ -71,7 +71,7 @@ python main.py
 <details><summary>Пример.</summary>
 
 ```python
-from ui import HorizontalList, Box, styles
+from cat_ui import HorizontalList, Box, styles
 
 list_of_boxes = HorizontalList()  # этот элемент нужен для отображения всех `Box`
 
@@ -111,7 +111,7 @@ print(list_of_boxes.draw(), end="", flush=True)
 <details><summary>Пример.</summary>
 
 ```python
-from ui import VerticalList, Label, Alignment
+from cat_ui import VerticalList, Label, Alignment
 
 labels = VerticalList(min_width=40) # этот элемент нужен для отображения всех `Label`
 
@@ -160,7 +160,7 @@ label_1
 
 <details><summary>Пример.</summary>
 ```python
-from ui import BoxContainer, Box, Alignment
+from cat_ui import BoxContainer, Box, Alignment
 
 box_container = BoxContainer(min_width=40, min_height=2, bottom_padding=2, right_padding=4)
 
@@ -201,7 +201,7 @@ input()
 <details><summary>Пример.</summary>
 
 ```python
-from ui import HorizontalList, Box, Alignment
+from cat_ui import HorizontalList, Box, Alignment
 
 horizontal_list = HorizontalList(space=0)
 
@@ -236,7 +236,7 @@ print(horizontal_list.draw(), end="", flush=True)
 <details><summary>Пример.</summary>
 
 ```python
-from ui import HorizontalContainer, Box, Alignment
+from cat_ui import HorizontalContainer, Box, Alignment
 
 horizontal_container = HorizontalContainer(space=0, left_padding=3)
 
@@ -289,7 +289,7 @@ print(horizontal_container.draw(), end="", flush=True)
 <details><summary>Пример.</summary>
 
 ```python
-from ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, run, set_screen
 import asyncio
 
 window = VerticalContainer(**styles.pretty, alignment=Alignment.TOP_CENTER)
@@ -362,7 +362,7 @@ asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from ui import VerticalContainer, VerticalCheckbox, Button, Label, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, VerticalCheckbox, Button, Label, styles, Alignment, run, set_screen
 import asyncio
 
 window = VerticalContainer(
@@ -430,7 +430,7 @@ app = asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from ui import VerticalContainer, VerticalRadio, Label, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, VerticalRadio, Label, styles, Alignment, run, set_screen
 import asyncio
 
 window = VerticalContainer(
@@ -513,7 +513,7 @@ app = asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from ui import VerticalContainer, HorizontalList, InputField, PasswordInput, Label, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, InputField, PasswordInput, Label, styles, Alignment, run, set_screen
 import asyncio
 
 window = VerticalContainer(

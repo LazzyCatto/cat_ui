@@ -1,4 +1,4 @@
-from ui import VerticalContainer, HorizontalList, BoxContainer, Button, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, BoxContainer, Button, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, run, set_screen
 import asyncio
 
 window_index = 0
