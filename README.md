@@ -169,7 +169,6 @@ box = Box(width=5, height=7, alignment=Alignment.CENTER_RIGHT, fill="#")
 box_container.append(box)
 
 print(box_container.draw(), end="", flush=True)
-input()
 ```
 
 ```

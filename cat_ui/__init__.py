@@ -3,51 +3,11 @@ from cat_ui.keyboard_manager import *
 from cat_ui.input_containers import *
 from cat_ui.visual import *
 from cat_ui.selectors import *
+from cat_ui.app import *
 import cat_ui.styles as styles
 
-
-SCREEN_WIDTH = 100
-SCREEN_HEIGHT = 50
-
-MAIN_WINDOW: ContainerElement = BoxContainer(alignment=Alignment.CENTER)
-
-WORKING = False
-
-
-def set_screen(main_window: ContainerElement):
-    global MAIN_WINDOW
-    MAIN_WINDOW = main_window
-    MAIN_WINDOW.select()
-
-
-def stop():
-    global WORKING
-    WORKING = False
-
-
-async def run():
-    WORKING = True
-
-    clear()
-    print(MAIN_WINDOW.draw_on_screen(SCREEN_WIDTH, SCREEN_HEIGHT))
-    raw_key = get_key_raw()
-    key, key_type = get_key_from_raw(raw_key)
-    while True:
-        if key_type == KeyType.COMBINATION and key[-1] == Key.C:
-            break
-        MAIN_WINDOW.process_key(raw_key)
-        if not WORKING:
-            break
-        clear()
-        print(MAIN_WINDOW.draw_on_screen(SCREEN_WIDTH, SCREEN_HEIGHT))
-        raw_key = get_key_raw()
-        key, key_type = get_key_from_raw(raw_key)
-
-    clear()
-    WORKING = False
-
-
 __all__ = [
+    "App",
     "styles",
     "ansi_pattern",
     "printable",

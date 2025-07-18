@@ -1,5 +1,7 @@
-from cat_ui import VerticalContainer, HorizontalList, BoxContainer, Button, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, BoxContainer, Button, VerticalRadio, InputField, PasswordInput, Label, Alignment, styles, App
 import asyncio
+
+app = App()
 
 window_index = 0
 windows = [VerticalContainer(min_width=40, alignment=Alignment.TOP_CENTER, **styles.pretty) for _ in range(3)]
@@ -7,12 +9,12 @@ windows = [VerticalContainer(min_width=40, alignment=Alignment.TOP_CENTER, **sty
 def go_back(button: Button):
     global window_index
     window_index -= 1
-    set_screen(windows[window_index])
+    app.set_screen(windows[window_index])
 
 def go_forward(button: Button):
     global window_index
     window_index += 1
-    set_screen(windows[window_index])
+    app.set_screen(windows[window_index])
 
 # window 0
 
@@ -92,5 +94,5 @@ prev_page.add_action(go_back)
 footer.append(prev_page)
 windows[2].append(footer)
 
-set_screen(windows[0])
-asyncio.run(run())
+app.set_screen(windows[0])
+asyncio.run(app.run())
