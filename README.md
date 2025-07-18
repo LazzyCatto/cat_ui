@@ -1,5 +1,8 @@
 # CAT UI
 
+[![GitHub](https://img.shields.io/badge/source-GitHub-blue)](https://github.com/LazzyCatto/cat_ui)
+[![PyPI](https://img.shields.io/badge/install%20via-pip-ff69b4)](https://pypi.org/project/cat-ui/)
+
 Это легковестный фрэймворк для создания интерактивных CLI программ на питоне.
 
 ![preview](https://github.com/LazzyCatto/cat_ui/blob/main/images/preview.gif)
@@ -9,15 +12,15 @@
 Установите напрямую из PyPI:
 
 ```bash
-pip install cat_ui
+pip install cat-ui
 ```
 
 Или локально из исходников:
 
 
 ```bash
-git clone https://github.com/LazzyCatto/midichi
-cd midich
+git clone https://github.com/LazzyCatto/cat_ui.git
+cd cat_ui
 pip install .
 ```
 
