@@ -1,3 +1,5 @@
 __pycache__
-cat_env
+build
+cat_ui.egg-info
+dist
 main.py

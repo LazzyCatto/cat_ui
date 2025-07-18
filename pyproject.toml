@@ -1,9 +1,10 @@
 [build-system]
-requires = ["regex>=2024.11.6"]
+requires = ["regex>=2024.11.6", "setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "cat_ui"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Akio Smiowly", email="lazzycatto@yandex.com" },
 ]
@@ -15,7 +16,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 license = "MIT"
-license-files = ["LICEN[CS]E*"]
+license-files = ["LICENCE"]
 
 [project.urls]
 Homepage = "https://github.com/LazzyCatto/cat_ui"
