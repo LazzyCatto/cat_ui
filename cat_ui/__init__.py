@@ -11,6 +11,8 @@ SCREEN_HEIGHT = 50
 
 MAIN_WINDOW: ContainerElement = BoxContainer(alignment=Alignment.CENTER)
 
+WORKING = False
+
 
 def set_screen(main_window: ContainerElement):
     global MAIN_WINDOW
@@ -18,18 +20,31 @@ def set_screen(main_window: ContainerElement):
     MAIN_WINDOW.select()
 
 
+def stop():
+    global WORKING
+    WORKING = False
+
+
 async def run():
+    WORKING = True
+
     clear()
     print(MAIN_WINDOW.draw_on_screen(SCREEN_WIDTH, SCREEN_HEIGHT))
     raw_key = get_key_raw()
     key, key_type = get_key_from_raw(raw_key)
-    while not (key_type == KeyType.COMBINATION and key[-1] == Key.C):
+    while True:
+        if key_type == KeyType.COMBINATION and key[-1] == Key.C:
+            break
         MAIN_WINDOW.process_key(raw_key)
+        if not WORKING:
+            break
         clear()
         print(MAIN_WINDOW.draw_on_screen(SCREEN_WIDTH, SCREEN_HEIGHT))
         raw_key = get_key_raw()
         key, key_type = get_key_from_raw(raw_key)
+
     clear()
+    WORKING = False
 
 
 __all__ = [
