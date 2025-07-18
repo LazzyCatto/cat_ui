@@ -71,23 +71,7 @@ python main.py
 <details><summary>Пример.</summary>
 
 ```python
-from cat_ui import HorizontalList, Box, styles
 
-list_of_boxes = HorizontalList()  # этот элемент нужен для отображения всех `Box`
-
-box_1 = Box(width=10, height=5)
-box_2 = Box(width=10, height=5, vertical_bar="$", horizontal_bar="~", corners=["1", "2", "3", "4"], fill="@")
-box_3 = Box(width=10, height=5, **styles.pretty)
-box_4 = Box(width=10, height=5, **styles.invisible)
-box_5 = Box(width=10, height=5, **styles.bold_pretty)
-
-list_of_boxes.append(box_1)
-list_of_boxes.append(box_2)
-list_of_boxes.append(box_3)
-list_of_boxes.append(box_4)
-list_of_boxes.append(box_5)
-
-print(list_of_boxes.draw(), end="", flush=True)
 ```
 
 ```
@@ -265,6 +249,82 @@ print(horizontal_container.draw(), end="", flush=True)
 ```
 </details>
 
+### App
+
+До сих пор отрисовка всех контейнеров происходила в `print`. Однако для более сложных взаимодействий, таких как : изменение окон, ввод текста с клавиатуры - есть отдельный класс `App`.
+
+`width`, `height` - высота и ширина приложения, соответственно.
+
+`set_screen(window: ContainerElement)` устанавливает текущее окно.
+
+`stop` останавливает приложение.
+
+Метод `run` является асинхронным, поэтому запускать его необходимо с помощью `asyncio`:
+```python
+import asyncio
+
+asyncio.run(app.run())
+```
+либо же внутри другого асинхронного метода.
+
+Сам по себе метод `run` представляет цикл, в котором отрисовываются все контейнеры, а так же отрабатывают все нажатия на клавиши.
+
+<details><summary>Пример запуска.</summary>
+
+```python
+from cat_ui import Box, Alignment, App
+import asyncio
+
+app = App(20, 10, Box(10, 5, alignment=Alignment.BOTTOM_RIGHT))
+asyncio.run(app.run())
+```
+</details>
+
+<details><summary>Пример смены экранов.</summary>
+
+```python
+from cat_ui import VerticalContainer, Button, Label, Alignment, App
+import asyncio
+
+app = App()
+
+window_1 = VerticalContainer(alignment=Alignment.TOP_CENTER)
+window_2 = VerticalContainer(alignment=Alignment.TOP_CENTER)
+
+button = Button("next window", alignment=Alignment.BOTTOM_CENTER)
+button.add_action(lambda btn: app.set_screen(window_2))
+
+window_1.append(Label("This is window 1"))
+window_1.append(button)
+
+window_2.append(Label("This is window 2"))
+
+app.set_screen(window_1)
+asyncio.run(app.run())
+```
+</details>
+
+<details><summary>Пример закрытия приложения.</summary>
+
+```python
+from cat_ui import VerticalContainer, Label, Button, Alignment, App
+import asyncio
+
+app = App()
+
+window = VerticalContainer(min_width=10, left_padding=2,right_padding=2, alignment=Alignment.TOP_CENTER)
+window.append(Label("Pressing this button will terminate window"))
+
+button = Button("click me", alignment=Alignment.BOTTOM_CENTER)
+button.add_action(lambda btn: app.stop())
+window.append(button)
+
+app.set_screen(window)
+asyncio.run(app.run())
+
+```
+</details>
+
 ### Кнопки и чекбоксы
 
 #### Button
@@ -288,8 +348,10 @@ print(horizontal_container.draw(), end="", flush=True)
 <details><summary>Пример.</summary>
 
 ```python
-from cat_ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, App
 import asyncio
+
+app = App()
 
 window = VerticalContainer(**styles.pretty, alignment=Alignment.TOP_CENTER)
 output = Label("no buttons have been pressed.", alignment=Alignment.CENTER)
@@ -313,8 +375,8 @@ button_row.append(button_1)
 button_row.append(button_2)
 button_row.append(button_3)
 
-set_screen(window)
-asyncio.run(run())
+app.set_screen(window)
+asyncio.run(app.run())
 ```
 
 ```
@@ -361,8 +423,10 @@ asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from cat_ui import VerticalContainer, VerticalCheckbox, Button, Label, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, VerticalCheckbox, Button, Label, styles, Alignment, App
 import asyncio
+
+app = App()
 
 window = VerticalContainer(
     space=2,
@@ -392,8 +456,8 @@ window.append(label)
 
 done_button.add_action(lambda btn: label.set_text(f"the mask list: {plan_list.get_mask()}"))
 
-set_screen(window)
-app = asyncio.run(run())
+app.set_screen(window)
+asyncio.run(app.run())
 ```
 
 ```
@@ -429,8 +493,12 @@ app = asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from cat_ui import VerticalContainer, VerticalRadio, Label, styles, Alignment, run, set_screen
+
+```
+from cat_ui import VerticalContainer, VerticalRadio, Label, styles, Alignment, App
 import asyncio
+
+app = App()
 
 window = VerticalContainer(
     space=2,
@@ -456,9 +524,8 @@ game_radio.add_action(on_change)
 
 window.append(label)
 
-set_screen(window)
-app = asyncio.run(run())
-```
+app.set_screen(window)
+asyncio.run(app.run())
 ```
                                   ┌─────────────────────────────┐
                                   │ What is your favorite game? │
@@ -512,8 +579,10 @@ app = asyncio.run(run())
 <details><summary>Пример.</summary>
 
 ```python
-from cat_ui import VerticalContainer, HorizontalList, InputField, PasswordInput, Label, styles, Alignment, run, set_screen
+from cat_ui import VerticalContainer, HorizontalList, InputField, PasswordInput, Label, styles, Alignment, App
 import asyncio
+
+app = App()
 
 window = VerticalContainer(
     space=2,
@@ -553,9 +622,10 @@ def check_password(password: PasswordInput):
 
 password_input.add_action(check_password)
 
-set_screen(window)
-app = asyncio.run(run())
+app.set_screen(window)
+asyncio.run(app.run())
 ```
+
 ```
                               ┌──────────────────────────────────────┐
                               │ What is your name?                   │
