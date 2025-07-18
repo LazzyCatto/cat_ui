@@ -2,7 +2,7 @@
 
 Это легковестный фрэймворк для создания интерактивных CLI программ на питоне.
 
-![preview](https://github.com/LazzyCatto/cat_ui/tree/main/images/preview.gif)
+![preview](https://github.com/LazzyCatto/cat_ui/blob/main/images/preview.gif)
 
 ## Установка
 
