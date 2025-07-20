@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cat_ui",
-    version="1.1.1",
+    version="1.2.0",
     description="Simple python ui lib for cli programs",
     author="Akio Smiowly",
     author_email="lazzycatto@yandex.com",

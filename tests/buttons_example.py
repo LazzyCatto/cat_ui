@@ -1,11 +1,11 @@
-from cat_ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, App
+from cat_ui import VerticalContainer, HorizontalList, Label, Button, styles, Alignment, App, Window
 import asyncio
 
 app = App()
+window = Window(VerticalContainer(**styles.pretty, alignment=Alignment.TOP_CENTER))
 
-window = VerticalContainer(**styles.pretty, alignment=Alignment.TOP_CENTER)
 output = Label("no buttons have been pressed.", alignment=Alignment.CENTER)
-window.append(output)
+window.context.append(output)
 
 def change_output(button: Button):
     output.set_text(f"\"{button.children[0].get_text()}\" has been pressed!")
@@ -19,11 +19,11 @@ button_2.add_action(change_output)
 button_3.add_action(change_output)
 
 button_row = HorizontalList()
-window.append(button_row)
+window.context.append(button_row)
 
 button_row.append(button_1)
 button_row.append(button_2)
 button_row.append(button_3)
 
-app.set_screen(window)
+app.add_window(window)
 asyncio.run(app.run())

@@ -13,7 +13,7 @@ window = VerticalContainer(
 window.append(Label("What is your favorite game?"))
 label = Label("")
 
-game_list = ["minectart", "terraria", "portal", "the witness"]
+game_list = ["minecraft", "terraria", "portal", "the witness"]
 game_radio = VerticalRadio(game_list, chosen_prefix="◉ ", plain_prefix="○ ")
 window.append(game_radio)
 

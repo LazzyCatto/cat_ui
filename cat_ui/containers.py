@@ -19,6 +19,10 @@ class ContainerElement:
         self.width = width
         self.height = height
         self.alignment = alignment
+        self.window = None
+    
+    def set_window(self, window):
+        self.window = window
 
     def draw(self):
         return ""
@@ -79,6 +83,12 @@ class BoxContainer(Box):
     
     def append(self, child: ContainerElement):
         self.children.append(child)
+        child.set_window(self.window)
+    
+    def set_window(self, window):
+        self.window = window
+        for child in self.children:
+            child.set_window(window)
     
     def get_width(self):
         return max(self.width, self.left_padding + self.right_padding + (max([child.get_width() for child in self.children]) if self.children else 0))
@@ -103,7 +113,7 @@ class BoxContainer(Box):
         self.children[self.selection_index].deselect()
     
     def process_key(self, raw_key):
-        if not self.children:
+        if not self.selectable():
             return raw_key
         raw_key = self.children[self.selection_index].process_key(raw_key)
         key, key_type = get_key_from_raw(raw_key)
@@ -152,6 +162,12 @@ class VerticalList(ContainerElement):
     
     def append(self, child: ContainerElement):
         self.children.append(child)
+        child.set_window(self.window)
+    
+    def set_window(self, window):
+        self.window = window
+        for child in self.children:
+            child.set_window(window)
     
     def get_width(self):
         return max(self.width, max([child.get_width() for child in self.children]) if self.children else 0)
@@ -177,7 +193,7 @@ class VerticalList(ContainerElement):
         self.children[self.selection_index].deselect()
     
     def process_key(self, raw_key):
-        if not self.children:
+        if not self.selectable():
             return raw_key
         raw_key = self.children[self.selection_index].process_key(raw_key)
         key, key_type = get_key_from_raw(raw_key)
@@ -227,6 +243,12 @@ class HorizontalList(ContainerElement):
     
     def append(self, child: ContainerElement):
         self.children.append(child)
+        child.set_window(self.window)
+    
+    def set_window(self, window):
+        self.window = window
+        for child in self.children:
+            child.set_window(window)
     
     def get_width(self):
         return max(self.width, (sum([child.get_width() + self.space for child in self.children]) if self.children else 0) - self.space)
@@ -252,7 +274,7 @@ class HorizontalList(ContainerElement):
         self.children[self.selection_index].deselect()
     
     def process_key(self, raw_key):
-        if not self.children:
+        if not self.selectable():
             return raw_key
         raw_key = self.children[self.selection_index].process_key(raw_key)
         key, key_type = get_key_from_raw(raw_key)
